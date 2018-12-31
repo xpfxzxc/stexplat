@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CollegeRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\User;
@@ -13,7 +14,13 @@ class CollegesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['show', 'index']]);
+    }
+
+    public function index()
+    {
+        $colleges = College::paginate(15);
+        return view('colleges.index', compact('colleges'));
     }
 
     public function show(College $college)

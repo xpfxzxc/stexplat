@@ -1,0 +1,46 @@
+@extends('layouts.app')
+
+@section('title', '院校列表')
+
+@section('content')
+
+<div class="row mb-5">
+  <div class="col-lg-9 col-md-9 topic-list">
+    @if (isset($category))
+      <div class="alert alert-info" role="alert">
+        {{ $category->name }} : {{ $category->description }}
+      </div>
+    @endif
+
+    <div class="card">
+
+      <div class="card-header bg-transparent">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+
+            <a class="nav-link " href="{{ Request::url() }}?order=name">
+              名称排序
+            </a>
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link" href="{{ Request::url() }}?order=region">
+              地区排序
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card-body">
+        {{-- 院校列表 --}}
+        @include('colleges._college_list', ['colleges' => $colleges])
+        {{-- 分页 --}}
+        <div class="mt-5">
+          {!! $colleges->render() !!}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection
