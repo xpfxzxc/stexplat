@@ -23,4 +23,6 @@ Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('ver
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 
-Route::get('select_role', "RoleSelectionController@notice")->name('role.select');
+Route::get('select_role', 'RoleSelectionController@notice')->name('role.select');
+
+Route::resource('students', 'StudentsController')->only('store');

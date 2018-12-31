@@ -23,7 +23,7 @@ class EnsureRoleSelected
         if ($request->user() &&
             $request->user()->hasVerifiedEmail() &&
             ! $request->user()->hasAnyRole(Role::all()) &&
-            ! $request->is('select_role', 'logout')) {
+            ! $request->is('select_role', 'students', 'logout')) {
             // 根据客户端返回对应的内容
             return $request->expectsJson()
                         ? abort(403, 'You have to select a role.')

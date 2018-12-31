@@ -7,6 +7,6 @@
   @elseif ($type === 'institution')
     <p>评估机构表单</p>
   @else
-    <p>学生表单</p>
+    @include('roles._student_form')
   @endif
 @stop

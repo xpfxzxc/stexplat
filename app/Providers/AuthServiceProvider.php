@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Spatie\Permission\Models\Role;
+use App\Models\Student;
+use App\Policies\StudentPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +28,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('student-store', function ($user) {
+            return ( ! $user->hasAnyRole(Role::all()));
+        });
+
+        Gate::define('select-role', function ($user) {
+            return ( ! $user->hasAnyRole(Role::all()));
+        });
     }
 }
