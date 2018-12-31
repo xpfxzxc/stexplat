@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Student;
+use App\Models\College;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -34,5 +35,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function student()
     {
         $this->hasOne(Student::class);
+    }
+
+    public function college()
+    {
+        $this->hasOne(College::class);
     }
 }

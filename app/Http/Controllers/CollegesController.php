@@ -13,7 +13,13 @@ class CollegesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
+    public function show(College $college)
+    {
+        $user = $college->user;
+        return view('colleges.show', compact('college', 'user'));
     }
 
     public function store(CollegeRequest $request, ImageUploadHandler $uploader, User $user)
