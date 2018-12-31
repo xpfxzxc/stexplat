@@ -76,8 +76,7 @@
 
             <div class="col-offset-4">
               <p>不是学生？ ·
-                <a href="{{ route(Route::currentRouteName()) }}?type=college">我是院校</a> ·
-                <a href="{{ route(Route::currentRouteName()) }}?type=institution">我是评估机构</a>
+                <a href="{{ route(Route::currentRouteName()) }}?type=college">我是院校</a>
               </p>
             </div>
           </form>

@@ -3,9 +3,7 @@
 
 @section('content')
   @if ($type === 'college')
-    <p>院校表单</p>
-  @elseif ($type === 'institution')
-    <p>评估机构表单</p>
+    @include('roles._college_form')
   @else
     @include('roles._student_form')
   @endif

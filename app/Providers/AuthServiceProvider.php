@@ -28,12 +28,17 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('select-role', function ($user) {
+            return ( ! $user->hasAnyRole(Role::all()));
+        });
+
+        Gate::define('college-store', function ($user) {
+            return ( ! $user->hasAnyRole(Role::all()));
+        });
+
         Gate::define('student-store', function ($user) {
             return ( ! $user->hasAnyRole(Role::all()));
         });
 
-        Gate::define('select-role', function ($user) {
-            return ( ! $user->hasAnyRole(Role::all()));
-        });
     }
 }

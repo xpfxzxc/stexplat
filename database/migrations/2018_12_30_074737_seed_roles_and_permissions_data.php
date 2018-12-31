@@ -25,7 +25,6 @@ class SeedRolesAndPermissionsData extends Migration
         // 创建角色
         $student = Role::create(['name' => 'Student']);
         $college = Role::create(['name' => 'College']);
-        $institution = Role::create(['name' => 'Institution']);
         $maintainer = Role::create(['name' => 'Maintainer']);
     }
 
