@@ -40,5 +40,8 @@ class AuthServiceProvider extends ServiceProvider
             return ( ! $user->hasAnyRole(Role::all()));
         });
 
+        Gate::define('update-course', function (\App\Models\User $user, \App\Models\Course $course) {
+            return $user->id === $course->college->user->id;
+        });
     }
 }

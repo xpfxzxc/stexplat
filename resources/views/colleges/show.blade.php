@@ -34,11 +34,33 @@
     <hr>
 
     {{-- 课程发布的内容 --}}
-    <div class="card ">
-      <div class="card-body">
-        暂无发布课程
-      </div>
+    @if ($courses->count())
+      <h3>院校课程</h3>
+      <ul class="list-group mt-4 border-8">
+        @foreach ($courses as $course)
+          <li class="list-group-item pl-2 pr-2 border-right-0 border-left-0 @if($loop->first) border-top-0 @endif">
+            <a href="{{ route('courses.show', $course->id) }}">
+              {{ $course->name }}
+            </a>
+            <i>发布于 {{ $course->created_at->diffForHumans() }}</i>
+            <span class="meta float-right text-secondary">
+              {{ $course->register_count }} 人申请
+              <span> · </span>
+              最后一次申请于 {{ $course->updated_at->diffForHumans() }}
+            </span>
+          </li>
+        @endforeach
+      </ul>
+
+    @else
+      <div class="empty-block">暂无发布课程</div>
+    @endif
+
+    {{-- 分页 --}}
+    <div class="mt-4 pt-1">
+      {!! $courses->render() !!}
     </div>
+
 
   </div>
 </div>

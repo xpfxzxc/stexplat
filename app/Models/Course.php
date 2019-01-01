@@ -12,4 +12,10 @@ class Course extends Model
     {
         return $this->belongsTo('App\Models\College', 'college_id', 'id');
     }
+
+    public function updateRegisterCount()
+    {
+        $this->register_count = \App\Models\Register::where('course_id', $this->id)->count();
+        $this->save();
+    }
 }

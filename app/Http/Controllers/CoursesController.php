@@ -12,7 +12,7 @@ class CoursesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['create', 'show']]);
+        $this->middleware('auth', ['except' => ['create', 'show', 'index']]);
     }
 
     public function show(Course $course)
@@ -22,7 +22,7 @@ class CoursesController extends Controller
 
     public function index()
     {
-        $courses = Course::paginate(15);
+        $courses = Course::orderBy('created_at', 'desc')->paginate(15);
         return view('courses.index', compact('courses'));
     }
 

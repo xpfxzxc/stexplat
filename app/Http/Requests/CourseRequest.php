@@ -25,7 +25,6 @@ class CourseRequest extends FormRequest
     {
         return [
             'name' => 'required|between:3,20|regex:/^[\x{4e00}-\x{9fa5}A-Za-z]+$/u',
-            'category' => 'required|between:2,10|regex:/^[\x{4e00}-\x{9fa5}]+$/u',
             'instructor' => 'required|between:2,40|regex:/^[\x{4e00}-\x{9fa5}A-Za-z ]+$/u',
             'start_at' => 'required|date',
             'end_at' => 'required|date|after:start',
@@ -43,9 +42,6 @@ class CourseRequest extends FormRequest
             'banner.required' =>'必须上传横幅',
             'banner.mimes' =>'横幅必须是 jpeg, bmp, png, gif 格式的图片',
             'banner.dimensions' => '横幅的清晰度不够，宽和高需要 208px 以上',
-            'category.required' => '课程类别不能为空',
-            'category.between' => '课程类别必须介于 2 - 10 个字符之间',
-            'category.regex' => '类别只支持中文字符',
             'instructor.required' => '讲师名字不能为空',
             'instructor.between' => '讲师名字必须介于 2 - 40 个字符之间',
             'instructor.regex' => '讲师名字只支持中文、英文、空格',

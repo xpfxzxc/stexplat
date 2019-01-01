@@ -34,10 +34,6 @@
             </div>
 
             <div class="form-group">
-              <input class="form-control" type="text" name="category" value="{{ old('category', $course->category) }}" placeholder="请填写类别" required>
-            </div>
-
-            <div class="form-group">
               <input class="form-control" type="text" name="instructor" value="{{ old('instructor', $course->instructor) }}" placeholder="请填写讲师名字" required>
             </div>
 

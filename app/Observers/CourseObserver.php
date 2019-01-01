@@ -10,7 +10,6 @@ class CourseObserver
     public function saving(Course $course)
     {
         $course->excerpt = make_excerpt($course->body);
-        $course->status = "未开始";
     }
 
     /**

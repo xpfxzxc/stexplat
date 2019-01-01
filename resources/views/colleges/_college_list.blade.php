@@ -13,6 +13,9 @@
             <a href="{{ route('colleges.show', [$college->id]) }}" title="">
               {{ $college->user->name }}
             </a>
+            <a class="float-right" href="{{ route('colleges.show', [$college->id]) }}">
+              <span class="badge badge-secondary badge-pill"> {{ $college->register_count }} </span>
+            </a>
           </div>
 
           <small class="media-body meta text-secondary">
@@ -24,23 +27,7 @@
             <span> · </span>
             <a class="text-secondary" href="" title="课程数量">
               <i class="fas fa-book-open"></i>
-              10
-            </a>
-
-            <span> · </span>
-            <a class="text-secondary" href="" title="申请人数">
-              <i class="far fa-user"></i>
-              10
-            </a>
-            <span> · </span>
-            <a class="text-secondary" href="" title="正在进行人数">
-              <i class="fas fa-book-reader"></i>
-              10
-            </a>
-            <span> · </span>
-            <a class="text-secondary" href="" title="完成人数">
-              <i class="fas fa-graduation-cap"></i>
-              10
+              {{ $college->courses()->count() }}
             </a>
             <br>
             {{ $college->introduction }}

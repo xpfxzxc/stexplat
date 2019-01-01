@@ -18,4 +18,10 @@ class College extends Model
     {
         return $this->hasMany('App\Models\Course', 'college_id', 'id');
     }
+
+    public function updateRegisterCount()
+    {
+        $this->register_count = \App\Models\Register::where('college_id', $this->id)->count();
+        $this->save();
+    }
 }

@@ -6,6 +6,9 @@
 
 <div class="row mb-5">
   <div class="col-lg-9 col-md-9">
+    <div class="alert alert-info" role="alert">
+      课程列表：选课程，申请院校
+    </div>
     <div class="card">
 
       <div class="card-header bg-transparent">

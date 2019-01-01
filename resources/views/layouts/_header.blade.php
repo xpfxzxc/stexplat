@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
   <div class="container">
     <!-- Branding Image -->
-    <a class="navbar-brand " href="{{ url('/') }}">
+    <a class="navbar-brand font-weight-bold" href="{{ url('/') }}">
       交换生课程交流平台
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,14 +22,21 @@
           <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
         @else
+          <li class="nav-item">
+            <a class="nav-link mr-2 font-weight-bold" href="{{ route('courses.create') }}">
+              <i class="fa fa-plus"></i>
+            </a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('registers.check') }}">消息</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="">个人中心</a>
-              <a class="dropdown-item" href="">编辑资料</a>
+              @if (Auth::user()->hasRole('College'))
+              <a class="dropdown-item" href="{{ route('colleges.show', Auth::user()->college->id) }}">院校信息</a>
               <div class="dropdown-divider"></div>
+              @endif
               <a class="dropdown-item" id="logout" href="#">
                 <form action="{{ route('logout') }}" method="POST">
                   {{ csrf_field() }}

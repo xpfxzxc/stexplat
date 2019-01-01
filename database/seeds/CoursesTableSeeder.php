@@ -18,7 +18,7 @@ class CoursesTableSeeder extends Seeder
         // 获取 Faker 实例
         $faker = app(Faker\Generator::class);
 
-        $courses = factory(Course::class)->times(50)->make()
+        $courses = factory(Course::class)->times(100)->make()
                     ->each(function ($course)
                         use ($college_ids, $faker)
         {

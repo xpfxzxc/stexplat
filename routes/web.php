@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'PagesController@root')->name('root');
+Route::get('/', 'CoursesController@index')->name('root');
 
 // 用户身份验证相关的路由
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -32,3 +32,7 @@ Route::resource('colleges', 'CollegesController', ['only' => ['show', 'store', '
 Route::resource('courses', 'CoursesController', ['only' => ['create', 'store', 'edit', 'update', 'show', 'index']]);
 
 Route::post('upload_image', 'CoursesController@uploadImage')->name('courses.upload_image');
+
+Route::resource('registers', 'RegistersController', ['only' => ['store']]);
+
+Route::get('notifications', 'RegistersController@check')->name('registers.check');

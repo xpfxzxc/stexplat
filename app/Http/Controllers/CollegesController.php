@@ -19,14 +19,15 @@ class CollegesController extends Controller
 
     public function index()
     {
-        $colleges = College::paginate(15);
+        $colleges = College::orderBy('created_at', 'desc')->paginate(15);
         return view('colleges.index', compact('colleges'));
     }
 
     public function show(College $college)
     {
         $user = $college->user;
-        return view('colleges.show', compact('college', 'user'));
+        $courses = $college->courses()->paginate(10);
+        return view('colleges.show', compact('college', 'user', 'courses'));
     }
 
     public function store(CollegeRequest $request, ImageUploadHandler $uploader, User $user)
@@ -44,9 +45,8 @@ class CollegesController extends Controller
         }
 
         $college->user_id = Auth::id();
-        $college->status = "待审核";
         $college->save();
         Auth::user()->assignRole('College');
-        return redirect()->route('root')->with('success', '院校信息完善成功！请耐心等待审核通过...');
+        return redirect()->route('root')->with('success', '院校信息完善成功！');
     }
 }
