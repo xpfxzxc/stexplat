@@ -29,6 +29,6 @@ Route::resource('students', 'StudentsController')->only('store');
 
 Route::resource('colleges', 'CollegesController', ['only' => ['show', 'store', 'index']]);
 
-Route::resource('courses', 'CoursesController', ['only' => ['create', 'store', 'edit', 'update', 'show']]);
+Route::resource('courses', 'CoursesController', ['only' => ['create', 'store', 'edit', 'update', 'show', 'index']]);
 
 Route::post('upload_image', 'CoursesController@uploadImage')->name('courses.upload_image');

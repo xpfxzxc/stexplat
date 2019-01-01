@@ -15,9 +15,9 @@
       </div>
       <hr>
       <div class="media">
-        <img class="mr-3" height="208" src="{{ $course->banner }}" alt="{{ $course->name }}">
+        <img class="mr-3" width="208" height="208" src="{{ $course->banner }}" alt="{{ $course->name }}">
         <div class="media-body" style="height:208px;">
-          <h1>{{ $course->name }} <small><small>{{ $course->status }}</small></small></h1>
+          <h2>{{ $course->name }} <small><small>{{ $course->status }}</small></small></h2>
           <div class="alert alert-light pd-0 md-0" role="alert">
             <p>授课人： {{ $course->instructor }}<br>
               开课时间： {{ $course->start_at }} ~ {{ $course->end_at }}<br>

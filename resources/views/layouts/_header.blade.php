@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="#">课程</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('courses.index') }}">课程</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('colleges.index') }}">院校</a></li>
       </ul>
 

@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Course;
-use App\Models\College;
-use App\Models\User;
 use Auth;
 
 class CoursesController extends Controller
@@ -20,6 +18,12 @@ class CoursesController extends Controller
     public function show(Course $course)
     {
         return view('courses.show', compact('course'));
+    }
+
+    public function index()
+    {
+        $courses = Course::paginate(15);
+        return view('courses.index', compact('courses'));
     }
 
     public function create(Course $course)
