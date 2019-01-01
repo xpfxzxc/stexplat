@@ -19,7 +19,7 @@ class CreateCollegesTable extends Migration
             $table->string('region')->index();
             $table->string('address');
             $table->string('tel');
-            $table->string('introduction');
+            $table->text('introduction');
             $table->string('status');
             $table->integer('user_id')->index();
             $table->timestamps();

@@ -34,11 +34,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function student()
     {
-        $this->hasOne(Student::class);
+        return $this->hasOne(Student::class);
     }
 
     public function college()
     {
-        $this->hasOne(College::class);
+        return $this->hasOne(College::class);
     }
 }

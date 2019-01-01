@@ -13,4 +13,9 @@ class College extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function courses()
+    {
+        return $this->hasMany('App\Models\Course', 'college_id', 'id');
+    }
 }

@@ -35,7 +35,7 @@ class CollegeRequest extends FormRequest
     public function messages()
     {
         return [
-            'badge.mimes' =>'必须上传校徽',
+            'badge.required' =>'必须上传校徽',
             'badge.mimes' =>'校徽必须是 jpeg, bmp, png, gif 格式的图片',
             'badge.dimensions' => '校徽的清晰度不够，宽和高需要 208px 以上',
             'region.required' => '地区不能为空',
@@ -45,7 +45,7 @@ class CollegeRequest extends FormRequest
             'address.between' => '地址必须介于 2 - 40 个字符之间',
             'address.regex' => '地址只支持中文、英文、数字、中文括号',
             'tel.required' => '联系方式不能为空',
-            'tel.regex' => '地址只支持中数字、横杠',
+            'tel.regex' => '联系方式只支持中数字、横杠',
             'tel.max' => '联系方式不能超过30个字符',
             'introduction.required' => '简介不能为空',
             'introduction.max' => '简介不能超过 200 个字符',

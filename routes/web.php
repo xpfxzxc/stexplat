@@ -28,3 +28,7 @@ Route::get('select_role', 'RoleSelectionController@notice')->name('role.select')
 Route::resource('students', 'StudentsController')->only('store');
 
 Route::resource('colleges', 'CollegesController', ['only' => ['show', 'store', 'index']]);
+
+Route::resource('courses', 'CoursesController', ['only' => ['create', 'store', 'edit', 'update', 'show']]);
+
+Route::post('upload_image', 'CoursesController@uploadImage')->name('courses.upload_image');
