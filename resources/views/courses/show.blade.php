@@ -26,6 +26,7 @@
               共 {{ $course->register_count }} 人申请
             </p>
           </div>
+          @if (Auth::user() && Auth::user()->hasRole('Student'))
           <form action="{{ route('registers.store') }}" method="POST">
             {{ csrf_field() }}
             <input type="hidden" name="student_id" value="{{ Auth::id() }}">
@@ -33,8 +34,14 @@
             <input type="hidden" name="course_id" value="{{ $course->id }}">
             <input type="hidden" name="college_name" value="{{ $course->college->user->name }}">
             <input type="hidden" name="course_name" value="{{ $course->name }}">
-            <button type="submit" class="btn btn-success btn-block col-md-3">申请</button>
+            @can ('register-course', $course->id)
+              <button type="submit" class="btn btn-outline-success btn-block col-md-3">申请</button>
+            @endcan
+            @cannot ('register-course', $course->id)
+              <button type="submit" class="btn btn-success btn-block col-md-3" disabled>{{ $register->status }}</button>
+            @endcannot
           </form>
+          @endif
         </div>
       </div>
 

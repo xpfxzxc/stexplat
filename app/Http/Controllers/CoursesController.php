@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
 use App\Handlers\ImageUploadHandler;
 use App\Models\Course;
+use App\Models\Register;
 use Auth;
 
 class CoursesController extends Controller
@@ -17,7 +18,8 @@ class CoursesController extends Controller
 
     public function show(Course $course)
     {
-        return view('courses.show', compact('course'));
+        $register = Register::where('student_id', Auth::id())->where('course_id', $course->id)->first();
+        return view('courses.show', compact('course', 'register'));
     }
 
     public function index()
@@ -28,11 +30,13 @@ class CoursesController extends Controller
 
     public function create(Course $course)
     {
+        $this->authorize('manage-course');
         return view('courses.create_and_edit', compact('course'));
     }
 
     public function store(CourseRequest $request, ImageUploadHandler $uploader)
     {
+        $this->authorize('manage-course');
         $data = $request->all();
 
         $result = $uploader->save($request->banner, 'banner', Auth::id(), 416);
@@ -45,6 +49,7 @@ class CoursesController extends Controller
 
     public function update(CourseRequest $request, ImageUploadHandler $uploader, Course $course)
     {
+        $this->authorize('manage-course');
         $data = $request->all();
         $result = $uploader->save($request->banner, 'banner', Auth::id(), 416);
 
@@ -57,6 +62,7 @@ class CoursesController extends Controller
 
     public function edit(Course $course)
     {
+        $this->authorize('manage-course');
         return view('courses.create_and_edit', compact('course'));
     }
 

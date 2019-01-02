@@ -19,9 +19,6 @@
         <hr>
         <h5><strong>注册于</strong></h5>
         <p>{{ $user->created_at->diffForHumans() }}</p>
-        <hr>
-        <h5><strong>审核于</strong></h5>
-        <p>{{ $college->updated_at->diffForHumans() }}</p>
       </div>
     </div>
   </div>

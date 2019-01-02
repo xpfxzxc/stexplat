@@ -18,6 +18,7 @@ class RegistersController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('register-course', $request->course_id);
         $student = Auth::user()->student;
         $register = new Register;
         $register->student_id = $request->student_id;
@@ -45,9 +46,9 @@ class RegistersController extends Controller
         $registers = [];
         $user = Auth::user();
         if ($user->hasRole('Student')) {
-            $registers = Register::where('student_id', $user->id)->paginate(20);
+            $registers = Register::where('student_id', $user->id)->orderBy('created_at', 'desc')->paginate(20);
         } else if ($user->hasRole('College')) {
-            $registers = Register::where('college_id', $user->id)->paginate(20);
+            $registers = Register::where('college_id', $user->id)->orderBy('created_at', 'desc')->paginate(20);
         }
         foreach ($registers as &$register) {
             $register->data = json_decode($register->data);
@@ -55,8 +56,19 @@ class RegistersController extends Controller
         return view('notifications.show', compact('registers'));
     }
 
-    public function change_status(Request $request)
+    public function pass(Request $request)
     {
+        $register = Register::find($request->register_id);
+        $register->status = "已通过";
+        $register->save();
+        return redirect()->back()->with('success', '已成功通过申请');
+    }
 
+    public function deny(Request $request)
+    {
+        $register = Register::find($request->register_id);
+        $register->status = "已否决";
+        $register->save();
+        return redirect()->back()->with('success', '已成功否决申请');
     }
 }

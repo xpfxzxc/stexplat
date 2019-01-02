@@ -34,5 +34,7 @@ Route::resource('courses', 'CoursesController', ['only' => ['create', 'store', '
 Route::post('upload_image', 'CoursesController@uploadImage')->name('courses.upload_image');
 
 Route::resource('registers', 'RegistersController', ['only' => ['store']]);
+Route::post('registers/pass', 'RegistersController@pass')->name('registers.pass');
+Route::post('registers/deny', 'RegistersController@deny')->name('registers.deny');
 
 Route::get('notifications', 'RegistersController@check')->name('registers.check');

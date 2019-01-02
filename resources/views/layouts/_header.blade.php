@@ -22,11 +22,13 @@
           <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
         @else
+          @can ('manage-course')
           <li class="nav-item">
             <a class="nav-link mr-2 font-weight-bold" href="{{ route('courses.create') }}">
               <i class="fa fa-plus"></i>
             </a>
           </li>
+          @endcan
           <li class="nav-item"><a class="nav-link" href="{{ route('registers.check') }}">消息</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

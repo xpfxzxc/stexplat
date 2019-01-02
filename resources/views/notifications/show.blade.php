@@ -31,13 +31,15 @@
                   手机号码：{{ $register->data->student_cell_phone }}
                 </div>
                 @if (Auth::user()->hasRole('College') && $register->status === '申请中')
-                  <form action="{{ route('logout') }}" method="POST" onsubmit="return confirm('您确定要拒绝吗？');">
+                  <form action="{{ route('registers.deny') }}" method="POST" onsubmit="return confirm('您确定要拒绝吗？');">
                     {{ csrf_field() }}
-                    <button type="submit" class="btn btn-danger float-right @if($register->status !== '申请中') disabled @endif">拒绝</button>
+                    <input type="hidden" name="register_id" value="{{ $register->id }}">
+                    <button type="submit" class="btn btn-danger float-right">否决</button>
                   </form>
-                  <form action="{{ route('logout') }}" method="POST" onsubmit="return confirm('您确定要通过吗？');">
+                  <form action="{{ route('registers.pass') }}" method="POST" onsubmit="return confirm('您确定要通过吗？');">
                     {{ csrf_field() }}
-                    <button type="submit" class="btn btn-primary float-right @if($register->status !== '申请中') disabled @endif">通过</button>
+                    <input type="hidden" name="register_id" value="{{ $register->id }}">
+                    <button type="submit" class="btn btn-primary float-right">通过</button>
                   </form>
                 @else
                   <p class="text-right pr-3">[{{ $register->status }}]</p>
